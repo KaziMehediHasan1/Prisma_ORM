@@ -12,16 +12,46 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  email    String   @unique
+  role     UserRole @default(USER)
+  profile  Profile? // one-to-one relationship with Profile
+  posts    Post[] // many-to-many relationship with Post
+
+  @@map("users")
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  userId Int     @unique
+  user   User    @relation(fields: [userId], references: [id])
+
+  @@map("profiles")
 }
 
 model Post {
-  id          Int    @id @default(autoincrement())
-  title       String
-  description String
-  autherId    Int
-  autherName  User   @relation(fields: [autherId], references: [id])
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  published Boolean  @default(false)
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("posts")
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  @@map("categories")
+}
+
+enum UserRole {
+  USER
+  ADMIN
 }

@@ -22,7 +22,7 @@ const main = async () => {
 
   // const createCategory = await prisma.category.create({
   //   data: {
-  //     name: "Tech",
+  //     name: "software engineering",
   //   },
   // });
   // console.log(createCategory, "CREATE CATEGORY");
@@ -45,6 +45,8 @@ const main = async () => {
     },
   });
   console.log(createPost, "CREATE POST");
+
+  
 };
 
 main()

@@ -31,22 +31,26 @@ const main = async () => {
     data: {
       title: "My First Post",
       content: "This is the content of my first post.",
-      published: true,
-      authorId: 6,
+      authorId: 1,
       postCategories: {
-        create: {
-          category: {
-            connect: {
-              id: 1,
-            },
+        create: [
+          {
+            categoryId: 1,
           },
-        },
+          {
+            categoryId: 6,
+          },
+          {
+            categoryId: 9,
+          },
+          {
+            categoryId: 10,
+          },
+        ],
       },
     },
   });
   console.log(createPost, "CREATE POST");
-
-  
 };
 
 main()

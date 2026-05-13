@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/user/aggregate.ts"
+    "dev": "tsx watch src/user/transaction.ts"
   },
   "keywords": [],
   "author": "",
